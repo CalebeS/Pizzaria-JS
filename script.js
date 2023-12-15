@@ -9,7 +9,10 @@ const v = (el) => document.querySelectorAll(el);
 pizzasJson.map((pizza, index) => {
     let pizzaItem = document.querySelector('.models .pizza-item').cloneNode(true);
     //preeccher as informações em pizzaItem
+    pizzaItem.querySelector('.pizza-item--name').innerHTML = pizza.name;
+    pizzaItem.querySelector('.pizza-item--desc').innerHTML = pizza.description;
+    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${pizza.price}`;
 
+    // preencher as pizzas em pizza area div.
     document.querySelector('.pizza-area').append(pizzaItem);
-    // preencher as pizzas em pizza area
 })
