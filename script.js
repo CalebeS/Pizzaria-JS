@@ -6,13 +6,23 @@ const v = (el) => document.querySelectorAll(el);
 // clona a estrutura div class pizza-item, preenche os dados dos campos e exibie na tela.
 // tudo que tiver em div models nao vai ser alterado, só copiado e colocado na tela, pois ele é O MODELO, como especificado na descrição da class
 
+
+
 pizzasJson.map((pizza, index) => {
     let pizzaItem = document.querySelector('.models .pizza-item').cloneNode(true);
     //preeccher as informações em pizzaItem
+    pizzaItem.querySelector('.pizza-item--img img').src = pizza.img;
+    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${pizza.price.toFixed(2)}`;
     pizzaItem.querySelector('.pizza-item--name').innerHTML = pizza.name;
     pizzaItem.querySelector('.pizza-item--desc').innerHTML = pizza.description;
-    pizzaItem.querySelector('.pizza-item--price').innerHTML = `R$ ${pizza.price}`;
-
+    pizzaItem.querySelector('a').addEventListener('click', (e) => {
+        e.preventDefault();
+        document.querySelector('.pizzaWindowArea').style.opacity = 0;
+        document.querySelector('.pizzaWindowArea').style.display = 'flex';
+        setTimeout(() => {
+            document.querySelector('.pizzaWindowArea').style.opacity = 1;
+        }, 200)
+    })
     // preencher as pizzas em pizza area div.
     document.querySelector('.pizza-area').append(pizzaItem);
-})
+})  
